@@ -12,3 +12,4 @@ This also assumes you have created an AWS account. Basic information on what you
 ## Samples:
 
 * Amazon SQS - Simple Queue Service
+* Amazon SNS - Simple Notification Service

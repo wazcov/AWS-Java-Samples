@@ -1,5 +1,6 @@
 package SQS;
 
+import AWS_Shared.AWSSharedUtils;
 import com.amazon.sqs.javamessaging.ProviderConfiguration;
 import com.amazon.sqs.javamessaging.SQSConnection;
 import com.amazon.sqs.javamessaging.SQSConnectionFactory;
@@ -20,7 +21,7 @@ public class SQS_Start {
     /*
         To Use AWS SQS, you need to ensure you have the following:
 
-        - A user created in AWS IAM
+        - A user created in AWS IAM (Place creds in AWSSharedUtils)
         - Groups for full access to SQS granted to that user
         - A queue created in the UI for SQS, with the same name used below
      */
@@ -63,7 +64,7 @@ public class SQS_Start {
 
     public static void openQueueConnection() throws Exception {
         //Get these credentials from IAM in the AWS Web UI
-        BasicAWSCredentials creds = new BasicAWSCredentials("XX", "XX");
+        BasicAWSCredentials creds = AWSSharedUtils.creds;
         SQSConnectionFactory connectionFactory = new SQSConnectionFactory(
                 new ProviderConfiguration(),
                 AmazonSQSClientBuilder.standard()
