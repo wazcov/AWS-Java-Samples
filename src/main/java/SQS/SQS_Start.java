@@ -6,7 +6,6 @@ import com.amazon.sqs.javamessaging.SQSConnection;
 import com.amazon.sqs.javamessaging.SQSConnectionFactory;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 
 import javax.jms.Message;
@@ -24,6 +23,7 @@ public class SQS_Start {
         - A user created in AWS IAM (Place creds in AWSSharedUtils)
         - Groups for full access to SQS granted to that user
         - A queue created in the UI for SQS, with the same name used below
+        - A region specified in AWSSharedUtils that matches the region you created the aformetnioned queue in, in AWS UI.
      */
 
     private static SQSConnection connection = null;
@@ -69,7 +69,7 @@ public class SQS_Start {
                 new ProviderConfiguration(),
                 AmazonSQSClientBuilder.standard()
                         .withCredentials(new AWSStaticCredentialsProvider(creds))
-                        .withRegion(Regions.US_EAST_2).build()
+                        .withRegion(AWSSharedUtils.region).build()
         );
         connection = connectionFactory.createConnection();
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);

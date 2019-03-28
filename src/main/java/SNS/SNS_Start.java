@@ -26,7 +26,7 @@ public class SNS_Start {
      */
 
     private static AmazonSNS amazonSNSClient = null;
-    private static String recieverEmailAddress = "XXX";
+
 
     public static void main(String[] args) {
         openSNSConnection();
@@ -39,7 +39,7 @@ public class SNS_Start {
         BasicAWSCredentials creds = AWSSharedUtils.creds;
         amazonSNSClient = AmazonSNSClient.builder()
                 .withCredentials(new AWSStaticCredentialsProvider(creds))
-                .withRegion(Regions.US_EAST_1)
+                .withRegion(AWSSharedUtils.region)
                 .build();
     }
 
@@ -52,7 +52,7 @@ public class SNS_Start {
     }
 
     public static void subscribeToATopic(String topicArn) {
-        final SubscribeRequest subscribeRequest = new SubscribeRequest(topicArn, "email", recieverEmailAddress);
+        final SubscribeRequest subscribeRequest = new SubscribeRequest(topicArn, "email", AWSSharedUtils.recieverEmailAddress);
         amazonSNSClient.subscribe(subscribeRequest);
 
         System.out.println("SubscribeRequest: " + amazonSNSClient.getCachedResponseMetadata(subscribeRequest));
@@ -64,12 +64,11 @@ public class SNS_Start {
             Thread.sleep(30000); //You have 30 seconds to confirm the subscription in your email account
         }catch(InterruptedException ie){}
 
-        //TODO test
-        // Publish a message to an Amazon SNS topic.
         final String msg = "If you receive this message, publishing a message to an Amazon SNS topic works.";
         final PublishRequest publishRequest = new PublishRequest(topicArn, msg);
         final PublishResult publishResponse = amazonSNSClient.publish(publishRequest);
 
         System.out.println("MessageId: " + publishResponse.getMessageId());
+        //Now check your email for a notification
     }
 }
