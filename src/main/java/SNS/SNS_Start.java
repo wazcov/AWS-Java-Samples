@@ -18,10 +18,10 @@ public class SNS_Start {
         To Use AWS SNS, you need to ensure you have the following:
 
         - A user created in AWS IAM (Place creds in AWSSharedUtils)
-        - Groups for full access to SNS granted to that user
+        - AmazonSNSFullAccess Group assigned to that user in IAM
         - A valid email address, specified below (after subscribing you have to confirm with your email)
 
-        Create A Topic method shows how one could create a topic programatically, however you could create
+        Create A Topic method shows how one could create a topic programmatically, however you could create
         this in the AWS UI and hard-code it.
      */
 

@@ -15,7 +15,9 @@ Remember to add your own credentials into the AWS Shared package.
 
 You can run the test InitTest to confirm that you have at least changed all the values (although it does not validate them).
 
+Each section contains a brief comment detailing the steps you need to take in the AWS Web UI to get set up. The program won't run unless you do these tasks.
 ## Samples:
 
 * Amazon SQS - Simple Queue Service
 * Amazon SNS - Simple Notification Service
+* Amazon SES - Simple Email Service
