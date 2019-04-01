@@ -20,7 +20,8 @@ public class SQS_Start {
     /*
         To Use AWS SQS, you need to ensure you have the following:
 
-        - A user created in AWS IAM (Place creds in AWSSharedUtils)
+        - A user created in AWS IAM
+        - Appropriate user, region, etc details updated in in AWSSharedUtils
         - AmazonSQSFullAccess Group assigned to that user in IAM
         - A queue created in the UI for SQS, with the same name used below
         - A region specified in AWSSharedUtils that matches the region you created the aformetnioned queue in, in AWS UI.

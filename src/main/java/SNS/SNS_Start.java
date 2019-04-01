@@ -17,7 +17,8 @@ public class SNS_Start {
     /*
         To Use AWS SNS, you need to ensure you have the following:
 
-        - A user created in AWS IAM (Place creds in AWSSharedUtils)
+        - A user created in AWS IAM
+        - Appropriate user, region, etc details updated in in AWSSharedUtils
         - AmazonSNSFullAccess Group assigned to that user in IAM
         - A valid email address, specified below (after subscribing you have to confirm with your email)
 
@@ -26,7 +27,6 @@ public class SNS_Start {
      */
 
     private static AmazonSNS amazonSNSClient = null;
-
 
     public static void main(String[] args) {
         openSNSConnection();
