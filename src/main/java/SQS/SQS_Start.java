@@ -35,7 +35,7 @@ public class SQS_Start {
         try {
             openQueueConnection();
             sendMessageOnAQueue();
-            recieveMessagesFromAQueue();
+            receiveMessagesFromAQueue();
             closeQueueConnection();
         }
         catch(Exception e) {
@@ -47,7 +47,7 @@ public class SQS_Start {
         connection.close();
     }
 
-    public static void recieveMessagesFromAQueue() throws Exception {
+    public static void receiveMessagesFromAQueue() throws Exception {
         MessageConsumer consumer = session.createConsumer(queue);
         connection.start();
         Message receivedMessage = consumer.receive(1000);
