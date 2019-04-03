@@ -11,17 +11,17 @@ This also assumes you have created an AWS account. Basic information on what you
 
 ## Important:
 
-Remember to add your own credentials into the AWS Shared package.
+Remember to add your own credentials into the AWS Shared package ([how-to](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/)).
 
-You can run the test InitTest to confirm that you have at least changed all the values (although it does not validate them).
+You can run the test [InitTest](src/test/java/InitTest.java) to confirm that you have at least changed all the values (although it does not validate them).
 
 Each section contains a brief comment detailing the steps you need to take in the AWS Web UI to get set up. The program won't run unless you do these tasks.
 
 ## Samples:
 
-* Amazon SQS - Simple Queue Service
-* Amazon SNS - Simple Notification Service
-* Amazon SES - Simple Email Service
-* Amazon RDS - Relational Database Service
+* [Amazon SQS - Simple Queue Service](src/main/java/SQS/SQS_Start.java)
+* [Amazon SNS - Simple Notification Service](src/main/java/SNS/SNS_Start.java)
+* [Amazon SES - Simple Email Service](src/main/java/SES/SES_Start.java)
+* [Amazon RDS - Relational Database Service](src/main/java/RDS/RDS_Start.java)
 
 ## Don't forget to star this repository if you find it useful :-)

@@ -25,7 +25,7 @@ public class SES_Start {
      */
 
     private static final String fromAddress = "wayne.covell@infinityworks.com";
-    private static final String toAddress = AWSSharedUtils.recieverEmailAddress;
+    private static final String toAddress = AWSSharedUtils.receiverEmailAddress;
     private static final String configSet = "MyConfig";
 
     private static final String subject = "Amazon SES test (AWS SDK for Java)";

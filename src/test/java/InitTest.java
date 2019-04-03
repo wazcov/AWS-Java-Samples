@@ -16,7 +16,7 @@ public class InitTest {
     public void checkCredsAreSet() {
         assertNotEquals(AWSSharedUtils.creds.getAWSAccessKeyId(), "XXX");
         assertNotEquals(AWSSharedUtils.creds.getAWSSecretKey(), "XXX");
-        assertNotEquals(AWSSharedUtils.recieverEmailAddress, "XXX");
+        assertNotEquals(AWSSharedUtils.receiverEmailAddress, "XXX");
         assertNotNull(AWSSharedUtils.region);
 
     }
