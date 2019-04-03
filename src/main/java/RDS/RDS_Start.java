@@ -41,13 +41,13 @@ public class RDS_Start {
 
             /*
             If we run the following commands straight away, it returns a null database
-             so we must run the create script, then the others a few minuites afterwards
+             so we must run the create script, then the others a few minutes afterwards
              */
 
 
             /*
-            TODO You currently have to edit the deafult VPC to allow traffic from anywhere on all ports.
-                There should be a way to do this programatically
+            TODO You currently have to edit the default VPC to allow traffic from anywhere on all ports.
+                There should be a way to do this programmatically
              */
 
 /*            listDatabases();

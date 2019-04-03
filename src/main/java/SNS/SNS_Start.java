@@ -52,7 +52,7 @@ public class SNS_Start {
     }
 
     public static void subscribeToATopic(String topicArn) {
-        final SubscribeRequest subscribeRequest = new SubscribeRequest(topicArn, "email", AWSSharedUtils.recieverEmailAddress);
+        final SubscribeRequest subscribeRequest = new SubscribeRequest(topicArn, "email", AWSSharedUtils.receiverEmailAddress);
         amazonSNSClient.subscribe(subscribeRequest);
 
         System.out.println("SubscribeRequest: " + amazonSNSClient.getCachedResponseMetadata(subscribeRequest));
