@@ -1,4 +1,4 @@
-package SecretsManager;
+package SM;
 
 import AWS_Shared.AWSSharedUtils;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

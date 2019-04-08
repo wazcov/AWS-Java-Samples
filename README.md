@@ -23,5 +23,6 @@ Each section contains a brief comment detailing the steps you need to take in th
 * [Amazon SNS - Simple Notification Service](src/main/java/SNS/SNS_Start.java)
 * [Amazon SES - Simple Email Service](src/main/java/SES/SES_Start.java)
 * [Amazon RDS - Relational Database Service](src/main/java/RDS/RDS_Start.java)
+* [Amazon SM - Secrets Manager](src/main/java/SM/SM_Start.java)
 
 ## Don't forget to star this repository if you find it useful :-)
