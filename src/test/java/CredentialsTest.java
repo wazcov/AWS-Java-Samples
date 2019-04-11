@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class InitTest {
+public class CredentialsTest {
 
     /*
         Run this test to confirm you have changed all of the appropriate settings
@@ -16,6 +16,8 @@ public class InitTest {
     public void checkCredsAreSet() {
         assertNotEquals(AWSSharedUtils.creds.getAWSAccessKeyId(), "XXX");
         assertNotEquals(AWSSharedUtils.creds.getAWSSecretKey(), "XXX");
+        assertNotEquals(AWSSharedUtils.basicCredentials.accessKeyId(), "XXX");
+        assertNotEquals(AWSSharedUtils.basicCredentials.secretAccessKey(), "XXX");
         assertNotEquals(AWSSharedUtils.receiverEmailAddress, "XXX");
         assertNotNull(AWSSharedUtils.region);
 
