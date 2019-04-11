@@ -9,7 +9,7 @@ import com.amazonaws.services.secretsmanager.model.GetSecretValueResult;
 import com.amazonaws.services.secretsmanager.model.ListSecretsRequest;
 import com.amazonaws.services.secretsmanager.model.ListSecretsResult;
 import com.amazonaws.util.IOUtils;
-import com.waynecovell.awsJavaSamples.AWS_Shared.AWSSharedUtils;
+import com.waynecovell.awsJavaSamples.AwsShared.AWSSharedUtils;
 
 import java.io.InputStream;
 import java.nio.ByteBuffer;

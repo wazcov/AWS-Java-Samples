@@ -1,6 +1,6 @@
 package com.waynecovell.awsJavaSamples.SQS;
 
-import com.waynecovell.awsJavaSamples.AWS_Shared.AWSSharedUtils;
+import com.waynecovell.awsJavaSamples.AwsShared.AWSSharedUtils;
 import com.amazon.sqs.javamessaging.ProviderConfiguration;
 import com.amazon.sqs.javamessaging.SQSConnection;
 import com.amazon.sqs.javamessaging.SQSConnectionFactory;

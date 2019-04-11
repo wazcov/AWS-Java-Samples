@@ -1,4 +1,4 @@
-package com.waynecovell.awsJavaSamples.AWS_Shared;
+package com.waynecovell.awsJavaSamples.AwsShared;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;

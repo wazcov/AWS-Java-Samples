@@ -1,6 +1,6 @@
 package com.waynecovell.awsJavaSamples.SES;
 
-import com.waynecovell.awsJavaSamples.AWS_Shared.AWSSharedUtils;
+import com.waynecovell.awsJavaSamples.AwsShared.AWSSharedUtils;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
