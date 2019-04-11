@@ -1,5 +1,5 @@
 # AWS Java Samples
-A repository of basic AWS samples to get you started connecting to various AWS Services like com.waynecovell.awsJavaSamples.V1SDK.SQS.
+A repository of basic AWS samples to get you started connecting to various AWS Services using the V1 and V2 SDKs.
 
 ## Assumptions:
 
