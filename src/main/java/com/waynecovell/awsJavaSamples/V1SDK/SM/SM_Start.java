@@ -1,4 +1,4 @@
-package com.waynecovell.awsJavaSamples.SM;
+package com.waynecovell.awsJavaSamples.V1SDK.SM;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.services.secretsmanager.AWSSecretsManager;
@@ -19,11 +19,10 @@ import java.security.spec.X509EncodedKeySpec;
 
 public class SM_Start {
 
-    public static final String region = "us-east-2";
-    public static AWSSecretsManager client = null;
-
-    public static final String STRING_KEY_NAME = "StringKeyX";
-    public static final String BINARY_FILE_KEY_NAME = "FileKeyX";
+    private static final String region = "us-east-2";
+    private static AWSSecretsManager client = null;
+    private static final String STRING_KEY_NAME = "StringKeyX";
+    private static final String BINARY_FILE_KEY_NAME = "FileKeyX";
 
     public static void main(String[] args) {
 
@@ -40,25 +39,25 @@ public class SM_Start {
             secretsManagerApplication.createSecretFromFile();
             secretsManagerApplication.getSecretFileValue();
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void setupSecretManager() {
+    private void setupSecretManager() {
         client = AWSSecretsManagerClientBuilder.standard()
                 .withRegion(region)
                 .withCredentials(new AWSStaticCredentialsProvider(AWSSharedUtils.creds))
                 .build();
     }
 
-    public void createSecretString() {
+    private void createSecretString() {
         CreateSecretRequest createSecretRequest = new CreateSecretRequest().withName(STRING_KEY_NAME).withSecretString("Hello World");
         client.createSecret(createSecretRequest);
         System.out.println("Stored Secret String");
     }
 
-    public void getSecretStringValue() {
+    private void getSecretStringValue() {
         ListSecretsRequest listSecretsRequest = new ListSecretsRequest();
         ListSecretsResult secretsResult = client.listSecrets(listSecretsRequest);
         secretsResult.getSecretList().stream().forEach(e -> System.out.println("Retrieved: " + e.getName()));
@@ -70,7 +69,7 @@ public class SM_Start {
         System.out.println("Retrieved String Value: " + secretString);
     }
 
-    public void createSecretFromFile() throws Exception {
+    private void createSecretFromFile() throws Exception {
         InputStream publicKeyStream = this.getClass().getClassLoader().getResourceAsStream("publicKeyFile");
         byte[] targetArray = IOUtils.toByteArray(publicKeyStream);
         ByteBuffer secretBinaryByteBuffer = ByteBuffer.wrap(targetArray);
@@ -81,7 +80,7 @@ public class SM_Start {
         System.out.println("Stored Secret File");
     }
 
-    public void getSecretFileValue() throws Exception {
+    private void getSecretFileValue() throws Exception {
         GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(BINARY_FILE_KEY_NAME);
         GetSecretValueResult secretValueResult = client.getSecretValue(getSecretValueRequest);
         ByteBuffer secretBinaryByteBuffer = secretValueResult.getSecretBinary();

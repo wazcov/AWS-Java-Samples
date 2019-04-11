@@ -1,4 +1,4 @@
-package com.waynecovell.awsJavaSamples.RDS;
+package com.waynecovell.awsJavaSamples.V1SDK.RDS;
 
 import com.waynecovell.awsJavaSamples.AwsShared.AWSSharedUtils;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -21,7 +21,7 @@ import java.util.UUID;
 public class RDS_Start {
 
      /*
-        To Use AWS com.waynecovell.awsJavaSamples.RDS, you need to ensure you have the following:
+        To Use AWS com.waynecovell.awsJavaSamples.V1SDK.RDS, you need to ensure you have the following:
 
         - A user created in AWS IAM
         - Appropriate user, region, etc details updated in in AWSSharedUtils
@@ -72,7 +72,7 @@ public class RDS_Start {
         DescribeDBInstancesResult result = client.describeDBInstances();
         List<DBInstance> instances = result.getDBInstances();
         DBInstance instance = instances.get(0); //If you have multiple databases, this just gets the first one
-        // Information about each com.waynecovell.awsJavaSamples.RDS instance
+        // Information about each com.waynecovell.awsJavaSamples.V1SDK.RDS instance
         String identifier = instance.getDBInstanceIdentifier();
         String engine = instance.getEngine();
         String status = instance.getDBInstanceStatus();
