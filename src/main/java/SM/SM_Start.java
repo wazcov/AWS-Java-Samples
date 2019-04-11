@@ -9,34 +9,93 @@ import com.amazonaws.services.secretsmanager.model.GetSecretValueRequest;
 import com.amazonaws.services.secretsmanager.model.GetSecretValueResult;
 import com.amazonaws.services.secretsmanager.model.ListSecretsRequest;
 import com.amazonaws.services.secretsmanager.model.ListSecretsResult;
+import com.amazonaws.util.IOUtils;
 
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.spec.X509EncodedKeySpec;
 
 public class SM_Start {
+
+    public static final String region = "us-east-2";
+    public static AWSSecretsManager client = null;
+
+    public static final String STRING_KEY_NAME = "StringKey1";
+    public static final String BINARY_FILE_KEY_NAME = "FileKey1";
+
     public static void main(String[] args) {
-        String region = "us-east-2";
-        AWSSecretsManager client = AWSSecretsManagerClientBuilder.standard()
+
+        SM_Start secretsManagerApplication = new SM_Start();
+
+        try {
+            secretsManagerApplication.setupSecretManager();
+
+            //Example Storing Key String
+            secretsManagerApplication.createSecretString();
+            secretsManagerApplication.getSecretStringValue();
+
+            //Example Storing Key Binary
+            secretsManagerApplication.createSecretFromFile();
+            secretsManagerApplication.getSecretFileValue();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setupSecretManager() {
+        client = AWSSecretsManagerClientBuilder.standard()
                 .withRegion(region)
                 .withCredentials(new AWSStaticCredentialsProvider(AWSSharedUtils.creds))
                 .build();
+    }
 
-        ByteBuffer buf = ByteBuffer.allocate(50);
-        CharBuffer cbuf = buf.asCharBuffer();
-        cbuf.put("Hello World");
-        String s = cbuf.toString();
+    public void createSecretString() {
+        CreateSecretRequest createSecretRequest = new CreateSecretRequest().withName(STRING_KEY_NAME).withSecretString("Hello World");
+        client.createSecret(createSecretRequest);
+        System.out.println("Stored Secret String");
+    }
 
-        CreateSecretRequest createSecretRequest = new CreateSecretRequest().withName("TestKey").withSecretBinary(buf);
+    public void getSecretStringValue() {
+        ListSecretsRequest listSecretsRequest = new ListSecretsRequest();
+        ListSecretsResult secretsResult = client.listSecrets(listSecretsRequest);
+        secretsResult.getSecretList().stream().forEach(e -> System.out.println("Retrieved: " + e.getName()));
+
+        GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(STRING_KEY_NAME);
+        GetSecretValueResult secretValueResult = client.getSecretValue(getSecretValueRequest);
+        String secretString = secretValueResult.getSecretString();
+
+        System.out.println("Retrieved String Value: " + secretString);
+    }
+
+    public void createSecretFromFile() throws Exception {
+        InputStream publicKeyStream = this.getClass().getClassLoader().getResourceAsStream("publicKeyFile");
+        byte[] targetArray = IOUtils.toByteArray(publicKeyStream);
+        ByteBuffer secretBinaryByteBuffer = ByteBuffer.wrap(targetArray);
+
+        CreateSecretRequest createSecretRequest = new CreateSecretRequest().withName(BINARY_FILE_KEY_NAME).withSecretBinary(secretBinaryByteBuffer);
         client.createSecret(createSecretRequest);
 
-        ListSecretsRequest listSecretsRequest = new ListSecretsRequest();
-        ListSecretsResult secrets = client.listSecrets(listSecretsRequest);
-        secrets.getSecretList().stream().forEach(e -> System.out.println(e.getKmsKeyId() + " " + e.getName()));
+        System.out.println("Stored Secret File");
+    }
 
-        GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId("TestKey");
+    public void getSecretFileValue() throws Exception {
+        GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(BINARY_FILE_KEY_NAME);
         GetSecretValueResult secretValueResult = client.getSecretValue(getSecretValueRequest);
-        ByteBuffer secretBinary = secretValueResult.getSecretBinary();
+        ByteBuffer secretBinaryByteBuffer = secretValueResult.getSecretBinary();
 
-        System.out.println(secretBinary.asCharBuffer().toString());
+        byte[] bytes = new byte[secretBinaryByteBuffer.capacity()];
+        secretBinaryByteBuffer.get(bytes, 0, bytes.length);
+
+        X509EncodedKeySpec spec = new X509EncodedKeySpec(bytes);
+        KeyFactory kf = KeyFactory.getInstance("RSA");
+        PublicKey binary = kf.generatePublic(spec);
+
+        System.out.println("Retrieved Secret Binary");
+        System.out.println("Validating Public Key...");
+        System.out.println(binary.toString());
     }
 }
