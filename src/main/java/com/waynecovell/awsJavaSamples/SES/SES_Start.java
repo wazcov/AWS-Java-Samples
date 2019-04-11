@@ -1,6 +1,6 @@
-package SES;
+package com.waynecovell.awsJavaSamples.SES;
 
-import AWS_Shared.AWSSharedUtils;
+import com.waynecovell.awsJavaSamples.AWS_Shared.AWSSharedUtils;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClientBuilder;
@@ -15,26 +15,26 @@ import java.io.IOException;
 public class SES_Start {
 
     /*
-        To Use AWS SES, you need to ensure you have the following:
+        To Use AWS com.waynecovell.awsJavaSamples.SES, you need to ensure you have the following:
 
         - A user created in AWS IAM
         - Appropriate user, region, etc details updated in in AWSSharedUtils
         - AmazonSESFullAccess Group assigned to that user in IAM
-        - Two valid, email addresses, both verified in AWS SES
-        - A valid configuration set, created in AWS SES ( I selected CloudWatch with a tag of a:1)
+        - Two valid, email addresses, both verified in AWS com.waynecovell.awsJavaSamples.SES
+        - A valid configuration set, created in AWS com.waynecovell.awsJavaSamples.SES ( I selected CloudWatch with a tag of a:1)
      */
 
     private static final String fromAddress = "wayne.covell@infinityworks.com";
     private static final String toAddress = AWSSharedUtils.receiverEmailAddress;
     private static final String configSet = "MyConfig";
 
-    private static final String subject = "Amazon SES test (AWS SDK for Java)";
-    private static final String htmlBody = "<h1>Amazon SES test (AWS SDK for Java)</h1>"
+    private static final String subject = "Amazon com.waynecovell.awsJavaSamples.SES test (AWS SDK for Java)";
+    private static final String htmlBody = "<h1>Amazon com.waynecovell.awsJavaSamples.SES test (AWS SDK for Java)</h1>"
             + "<p>This email was sent with <a href='https://aws.amazon.com/ses/'>"
-            + "Amazon SES</a> using the <a href='https://aws.amazon.com/sdk-for-java/'>"
+            + "Amazon com.waynecovell.awsJavaSamples.SES</a> using the <a href='https://aws.amazon.com/sdk-for-java/'>"
             + "AWS SDK for Java</a>";
 
-    private static final String nonHtmlClientBody = "This email was sent through Amazon SES "
+    private static final String nonHtmlClientBody = "This email was sent through Amazon com.waynecovell.awsJavaSamples.SES "
             + "using the AWS SDK for Java.";
 
     public static void main(String[] args) throws IOException {

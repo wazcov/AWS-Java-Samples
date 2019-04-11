@@ -1,5 +1,5 @@
 # AWS Java Samples
-A repository of basic AWS samples to get you started connecting to various AWS Services like SQS.
+A repository of basic AWS samples to get you started connecting to various AWS Services like com.waynecovell.awsJavaSamples.SQS.
 
 ## Assumptions:
 
@@ -19,10 +19,10 @@ Each section contains a brief comment detailing the steps you need to take in th
 
 ## Samples:
 
-* [Amazon SQS - Simple Queue Service](src/main/java/SQS/SQS_Start.java)
-* [Amazon SNS - Simple Notification Service](src/main/java/SNS/SNS_Start.java)
-* [Amazon SES - Simple Email Service](src/main/java/SES/SES_Start.java)
-* [Amazon RDS - Relational Database Service](src/main/java/RDS/RDS_Start.java)
-* [Amazon SM - Secrets Manager](src/main/java/SM/SM_Start.java)
+* [Amazon com.waynecovell.awsJavaSamples.SQS - Simple Queue Service](src/main/java/com/waynecovell/awsJavaSamples/SQS/SQS_Start.java)
+* [Amazon com.waynecovell.awsJavaSamples.SNS - Simple Notification Service](src/main/java/com/waynecovell/awsJavaSamples/SNS/SNS_Start.java)
+* [Amazon com.waynecovell.awsJavaSamples.SES - Simple Email Service](src/main/java/com/waynecovell/awsJavaSamples/SES/SES_Start.java)
+* [Amazon com.waynecovell.awsJavaSamples.RDS - Relational Database Service](src/main/java/com/waynecovell/awsJavaSamples/RDS/RDS_Start.java)
+* [Amazon com.waynecovell.awsJavaSamples.SM - Secrets Manager](src/main/java/com/waynecovell/awsJavaSamples/SM/SM_Start.java)
 
 ## Don't forget to star this repository if you find it useful :-)

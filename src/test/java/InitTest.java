@@ -1,4 +1,4 @@
-import AWS_Shared.AWSSharedUtils;
+import com.waynecovell.awsJavaSamples.AWS_Shared.AWSSharedUtils;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotEquals;

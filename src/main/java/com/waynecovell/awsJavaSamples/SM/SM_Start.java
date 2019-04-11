@@ -1,6 +1,5 @@
-package SM;
+package com.waynecovell.awsJavaSamples.SM;
 
-import AWS_Shared.AWSSharedUtils;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.services.secretsmanager.AWSSecretsManager;
 import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
@@ -10,10 +9,10 @@ import com.amazonaws.services.secretsmanager.model.GetSecretValueResult;
 import com.amazonaws.services.secretsmanager.model.ListSecretsRequest;
 import com.amazonaws.services.secretsmanager.model.ListSecretsResult;
 import com.amazonaws.util.IOUtils;
+import com.waynecovell.awsJavaSamples.AWS_Shared.AWSSharedUtils;
 
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
@@ -23,8 +22,8 @@ public class SM_Start {
     public static final String region = "us-east-2";
     public static AWSSecretsManager client = null;
 
-    public static final String STRING_KEY_NAME = "StringKey1";
-    public static final String BINARY_FILE_KEY_NAME = "FileKey1";
+    public static final String STRING_KEY_NAME = "StringKeyX";
+    public static final String BINARY_FILE_KEY_NAME = "FileKeyX";
 
     public static void main(String[] args) {
 
@@ -94,8 +93,7 @@ public class SM_Start {
         KeyFactory kf = KeyFactory.getInstance("RSA");
         PublicKey binary = kf.generatePublic(spec);
 
-        System.out.println("Retrieved Secret Binary");
-        System.out.println("Validating Public Key...");
+        System.out.println("Retrieved Secret Binary:");
         System.out.println(binary.toString());
     }
 }

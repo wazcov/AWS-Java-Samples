@@ -1,9 +1,8 @@
-package SNS;
+package com.waynecovell.awsJavaSamples.SNS;
 
-import AWS_Shared.AWSSharedUtils;
+import com.waynecovell.awsJavaSamples.AWS_Shared.AWSSharedUtils;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.CreateTopicRequest;
@@ -15,7 +14,7 @@ import com.amazonaws.services.sns.model.SubscribeRequest;
 public class SNS_Start {
 
     /*
-        To Use AWS SNS, you need to ensure you have the following:
+        To Use AWS com.waynecovell.awsJavaSamples.SNS, you need to ensure you have the following:
 
         - A user created in AWS IAM
         - Appropriate user, region, etc details updated in in AWSSharedUtils
@@ -64,7 +63,7 @@ public class SNS_Start {
             Thread.sleep(30000); //You have 30 seconds to confirm the subscription in your email account
         }catch(InterruptedException ie){}
 
-        final String msg = "If you receive this message, publishing a message to an Amazon SNS topic works.";
+        final String msg = "If you receive this message, publishing a message to an Amazon com.waynecovell.awsJavaSamples.SNS topic works.";
         final PublishRequest publishRequest = new PublishRequest(topicArn, msg);
         final PublishResult publishResponse = amazonSNSClient.publish(publishRequest);
 
