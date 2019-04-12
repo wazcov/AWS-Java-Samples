@@ -60,7 +60,7 @@ public class SM_Start {
     private void getSecretStringValue() {
         ListSecretsRequest listSecretsRequest = new ListSecretsRequest();
         ListSecretsResult secretsResult = client.listSecrets(listSecretsRequest);
-        secretsResult.getSecretList().stream().forEach(e -> System.out.println("Retrieved: " + e.getName()));
+        secretsResult.getSecretList().forEach(e -> System.out.println("Retrieved: " + e.getName()));
 
         GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(STRING_KEY_NAME);
         GetSecretValueResult secretValueResult = client.getSecretValue(getSecretValueRequest);

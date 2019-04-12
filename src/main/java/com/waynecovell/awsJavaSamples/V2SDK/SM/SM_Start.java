@@ -19,7 +19,6 @@ import java.security.spec.X509EncodedKeySpec;
 
 public class SM_Start {
 
-    private static final String region = "us-east-2";
     private static SecretsManagerClient client = null;
     private static final String STRING_KEY_NAME = "StringKeyX";
     private static final String BINARY_FILE_KEY_NAME = "FileKeyX";
@@ -58,7 +57,7 @@ public class SM_Start {
         ListSecretsRequest listSecretsRequest = ListSecretsRequest.builder().build();
         ListSecretsResponse listSecretsResponse = client.listSecrets(listSecretsRequest);
 
-        listSecretsResponse.secretList().stream().forEach(e -> System.out.println("Retrieved: " + e.name()));
+        listSecretsResponse.secretList().forEach(e -> System.out.println("Retrieved: " + e.name()));
 
         GetSecretValueRequest getSecretValueRequest = GetSecretValueRequest.builder().secretId(STRING_KEY_NAME).build();
         GetSecretValueResponse secretValueResponse = client.getSecretValue(getSecretValueRequest);
