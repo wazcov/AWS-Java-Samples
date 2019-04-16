@@ -1,15 +1,15 @@
-package com.waynecovell.awsJavaSamples.V2SDK.SM;
+package com.wazcov.awsJavaSamples.V1SDK.SM;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.services.secretsmanager.AWSSecretsManager;
+import com.amazonaws.services.secretsmanager.AWSSecretsManagerClientBuilder;
+import com.amazonaws.services.secretsmanager.model.CreateSecretRequest;
+import com.amazonaws.services.secretsmanager.model.GetSecretValueRequest;
+import com.amazonaws.services.secretsmanager.model.GetSecretValueResult;
+import com.amazonaws.services.secretsmanager.model.ListSecretsRequest;
+import com.amazonaws.services.secretsmanager.model.ListSecretsResult;
 import com.amazonaws.util.IOUtils;
-import com.waynecovell.awsJavaSamples.AwsShared.AWSSharedUtils;
-import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
-import software.amazon.awssdk.core.SdkBytes;
-import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
-import software.amazon.awssdk.services.secretsmanager.model.CreateSecretRequest;
-import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueRequest;
-import software.amazon.awssdk.services.secretsmanager.model.GetSecretValueResponse;
-import software.amazon.awssdk.services.secretsmanager.model.ListSecretsRequest;
-import software.amazon.awssdk.services.secretsmanager.model.ListSecretsResponse;
+import com.wazcov.awsJavaSamples.AwsShared.AWSSharedUtils;
 
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -19,7 +19,8 @@ import java.security.spec.X509EncodedKeySpec;
 
 public class SM_Start {
 
-    private static SecretsManagerClient client = null;
+    private static final String region = "us-east-2";
+    private static AWSSecretsManager client = null;
     private static final String STRING_KEY_NAME = "StringKeyX";
     private static final String BINARY_FILE_KEY_NAME = "FileKeyX";
 
@@ -44,24 +45,26 @@ public class SM_Start {
     }
 
     private void setupSecretManager() {
-        client = SecretsManagerClient.builder().credentialsProvider(StaticCredentialsProvider.create(AWSSharedUtils.basicCredentials)).build();
+        client = AWSSecretsManagerClientBuilder.standard()
+                .withRegion(region)
+                .withCredentials(new AWSStaticCredentialsProvider(AWSSharedUtils.creds))
+                .build();
     }
 
     private void createSecretString() {
-        CreateSecretRequest createSecretRequest = CreateSecretRequest.builder().name(STRING_KEY_NAME).secretString("Hello World").build();
+        CreateSecretRequest createSecretRequest = new CreateSecretRequest().withName(STRING_KEY_NAME).withSecretString("Hello World");
         client.createSecret(createSecretRequest);
         System.out.println("Stored Secret String");
     }
 
     private void getSecretStringValue() {
-        ListSecretsRequest listSecretsRequest = ListSecretsRequest.builder().build();
-        ListSecretsResponse listSecretsResponse = client.listSecrets(listSecretsRequest);
+        ListSecretsRequest listSecretsRequest = new ListSecretsRequest();
+        ListSecretsResult secretsResult = client.listSecrets(listSecretsRequest);
+        secretsResult.getSecretList().forEach(e -> System.out.println("Retrieved: " + e.getName()));
 
-        listSecretsResponse.secretList().forEach(e -> System.out.println("Retrieved: " + e.name()));
-
-        GetSecretValueRequest getSecretValueRequest = GetSecretValueRequest.builder().secretId(STRING_KEY_NAME).build();
-        GetSecretValueResponse secretValueResponse = client.getSecretValue(getSecretValueRequest);
-        String secretString = secretValueResponse.secretString();
+        GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(STRING_KEY_NAME);
+        GetSecretValueResult secretValueResult = client.getSecretValue(getSecretValueRequest);
+        String secretString = secretValueResult.getSecretString();
 
         System.out.println("Retrieved String Value: " + secretString);
     }
@@ -71,17 +74,16 @@ public class SM_Start {
         byte[] targetArray = IOUtils.toByteArray(publicKeyStream);
         ByteBuffer secretBinaryByteBuffer = ByteBuffer.wrap(targetArray);
 
-        CreateSecretRequest createSecretRequest = CreateSecretRequest.builder().name(BINARY_FILE_KEY_NAME).secretBinary(SdkBytes.fromByteBuffer(secretBinaryByteBuffer)).build();
+        CreateSecretRequest createSecretRequest = new CreateSecretRequest().withName(BINARY_FILE_KEY_NAME).withSecretBinary(secretBinaryByteBuffer);
         client.createSecret(createSecretRequest);
 
         System.out.println("Stored Secret File");
     }
 
     private void getSecretFileValue() throws Exception {
-        GetSecretValueRequest getSecretValueRequest = GetSecretValueRequest.builder().secretId(BINARY_FILE_KEY_NAME).build();
-        GetSecretValueResponse secretValueResponse = client.getSecretValue(getSecretValueRequest);
-
-        ByteBuffer secretBinaryByteBuffer = secretValueResponse.secretBinary().asByteBuffer();
+        GetSecretValueRequest getSecretValueRequest = new GetSecretValueRequest().withSecretId(BINARY_FILE_KEY_NAME);
+        GetSecretValueResult secretValueResult = client.getSecretValue(getSecretValueRequest);
+        ByteBuffer secretBinaryByteBuffer = secretValueResult.getSecretBinary();
 
         byte[] bytes = new byte[secretBinaryByteBuffer.capacity()];
         secretBinaryByteBuffer.get(bytes, 0, bytes.length);

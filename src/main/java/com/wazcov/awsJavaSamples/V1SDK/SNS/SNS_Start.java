@@ -1,6 +1,6 @@
-package com.waynecovell.awsJavaSamples.V1SDK.SNS;
+package com.wazcov.awsJavaSamples.V1SDK.SNS;
 
-import com.waynecovell.awsJavaSamples.AwsShared.AWSSharedUtils;
+import com.wazcov.awsJavaSamples.AwsShared.AWSSharedUtils;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.sns.AmazonSNS;

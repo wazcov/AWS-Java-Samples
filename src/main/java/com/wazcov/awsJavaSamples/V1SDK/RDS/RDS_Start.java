@@ -1,6 +1,6 @@
-package com.waynecovell.awsJavaSamples.V1SDK.RDS;
+package com.wazcov.awsJavaSamples.V1SDK.RDS;
 
-import com.waynecovell.awsJavaSamples.AwsShared.AWSSharedUtils;
+import com.wazcov.awsJavaSamples.AwsShared.AWSSharedUtils;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.services.rds.AmazonRDS;
 import com.amazonaws.services.rds.AmazonRDSClientBuilder;
