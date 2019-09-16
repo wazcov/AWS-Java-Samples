@@ -8,10 +8,10 @@ import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
     Enter your own credentials here
  */
 public class AWSSharedUtils {
-    public static Regions region = null; //e.g Regions.US_EAST_1;
+    public static Regions region = Regions.EU_WEST_1; //e.g Regions.US_EAST_1;
     public static String receiverEmailAddress = "XXX";
-    public static String accessKey = "XXX";
-    public static String secretKey = "XXX";
+    public static String accessKey = "xxx";
+    public static String secretKey = "xxx";
 
     //V1 SDK
     public static BasicAWSCredentials creds = new BasicAWSCredentials(accessKey, secretKey);

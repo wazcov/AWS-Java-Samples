@@ -57,6 +57,10 @@
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>secretsmanager</artifactId>
         </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+        </dependency>
         <!-- AWS SDK V1 -->
         <dependency>
             <groupId>com.amazonaws</groupId>

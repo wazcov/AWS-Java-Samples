@@ -29,5 +29,6 @@ Each section contains a brief comment detailing the steps you need to take in th
 ## SDK V2 Samples:
 
 * [Amazon SM - Secrets Manager](src/main/java/com/waynecovell/awsJavaSamples/V2SDK/SM/SM_Start.java)
+* [Amazon S3 - S3](src/main/java/com/waynecovell/awsJavaSamples/V2SDK/S3/S3_Start.java)
 
 ## Don't forget to star this repository if you find it useful :-)
